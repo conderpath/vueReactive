@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module">
+    import {reactive,readonly} from './lib/reactive.js'
+    import {ref} from './lib/ref.js'
+    import {effect} from './lib/effect.js'
+    // const state = reactive({a:1,arr:[1,2,3]});
+    const state = ref({a:1})
+    effect(()=>{
+      // root.innerHTML = state.arr[1] +'----'+state.arr.length;
+      // root.innerHTML = state.arr + '-----'+state.a
+      root.innerHTML = state.value.a
+      console.log("render");
+    });
+    
+    setTimeout(()=>{
+      // state.a = 10
+      // state.arr[100] = 10
+      state.value.a = 100
+    },3000)
+  </script>
+</body>
+</html>
